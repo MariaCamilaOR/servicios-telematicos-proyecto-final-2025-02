@@ -116,7 +116,8 @@ RESET SLAVE ALL;
 ## Usa los valores exactos de SHOW MASTER STATUS del master (File y Position)
 En este caso nos apareció 
 
-# ⚠ ⚠ ⚠ ⚠ INSERTAR IMAGEN 1 EN WS
+![Imagen de WhatsApp 2025-11-06 a las 14 54 13_b1e54da7](https://github.com/user-attachments/assets/ea40af92-4946-45a5-968e-57784a270009)
+
 
 Por lo tanto nos quedaría así:
 ```
