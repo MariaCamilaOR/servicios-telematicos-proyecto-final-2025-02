@@ -352,3 +352,37 @@ mysql -u appuser -p'1234' -h 127.0.0.1 -P 6446 -e "USE testdb; INSERT INTO rep_c
 ```
 sudo mysql -u root -p -e "UNLOCK TABLES;"
 ```
+
+
+## 9) Pruebas de carga 
+
+### 9.1 Instalar sysbench
+```
+curl -s https://packagecloud.io/install/repositories/akopytov/sysbench/script.deb.sh | sudo bash
+    sudo apt -y install sysbench
+```
+
+### 9.2 Configuración:
+Ubicamos la ruta del script de pruebas OLTP que trae sysbench (en muchas distros queda en /usr/share/sysbench/).
+
+```
+
+sysbench /usr/share/sysbench/oltp_read_write.lua   --db-driver=mysql   --mysql-host=192.168.50.13   --mysql-port=6446   --mysql-user=appuser   --mysql-password='1234'   --mysql-db=testdb   --tables=10   --table-size=100000   prepare
+```
+
+### 9.3 Carga de solo lectura (vía puerto RO del Router: 6447)
+
+```
+sysbench /usr/share/sysbench/oltp_read_only.lua \
+  --db-driver=mysql \
+  --mysql-host=192.168.50.13 \
+  --mysql-port=6447 \
+  --mysql-user=appuser \
+  --mysql-password='1234' \
+  --mysql-db=testdb \
+  --threads=64 \
+  --time=300 \
+  --report-interval=10 \
+  --percentile=99 \
+  run 2>&1 | tee sysbench_ro_64t_5m.log
+```
