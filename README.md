@@ -245,7 +245,7 @@ SELECT * FROM rep_check_2;
 ```
 
 ---
-###En caso de que se al crear un nuevo slave configurado y no funcione la replicacion, la solucion es crear la base de datos y la tabla que quieren replicarse en el slave y volver a probar para que ya se repliquen los datos.
+> Nota: Si se desea crear un nuevo slave configurado y no funcione la replicacion, la solucion es crear la base de datos y la tabla que quieren replicarse en el slave y volver a probar para que ya se repliquen los datos.
 ## 5) Usuario de aplicación
 
 ### 5.1 En **mysql-master** (permisos DML/DDL)
